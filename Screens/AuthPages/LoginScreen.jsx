@@ -16,46 +16,97 @@ import {
 import backgroundImg from '../../assets/img/background.jpg';
 
 const LoginScreen = () => {
-  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleFocus = () => {
-    setIsShowKeyboard(true);
+  const [isSecureText, setIsSecureText] = useState(true);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [currentFocused, setCurrentFocused] = useState('');
+
+  const clearUserForm = () => {
+    setEmail('');
+    setPassword('');
   };
+
+  const onSubmitUserRegister = () => {
+    if (!email.trim() || !password.trim()) return console.warn('Будь ласка заповніть поля');
+
+    console.log({ email, password });
+
+    handleKeyboardHide();
+    clearUserForm();
+  };
+
+  const handleFocus = (currentFocusInput = '') => {
+    setIsShowKeyboard(true);
+    setCurrentFocused(currentFocusInput);
+  };
+
   const handleKeyboardHide = () => {
     setIsShowKeyboard(false);
+    setCurrentFocused('');
     Keyboard.dismiss();
   };
 
   return (
     <TouchableWithoutFeedback onPress={handleKeyboardHide}>
       <View style={styles.container}>
-        <ImageBackground source={backgroundImg} style={styles.bgContainer}>
-          <View style={styles.contentWrapper}>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              style={styles.keyboardView}
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.keyboardView}
+        >
+          <ImageBackground source={backgroundImg} style={styles.bgContainer}>
+            <View
+              style={{ ...styles.contentWrapper, height: isShowKeyboard ? '66.38%' : '60.22%' }}
             >
               <Text style={styles.title}>Увійти</Text>
               <TextInput
-                style={{ ...styles.input }}
+                style={{
+                  ...styles.input,
+                  backgroundColor: currentFocused === 'email' ? '#ffffff' : '#f6f6f6',
+                  borderColor: currentFocused === 'email' ? '#ff6c00' : '#e8e8e8',
+                }}
                 placeholder="Адреса електронної пошти"
-                onFocus={handleFocus}
+                placeholderTextColor="#bdbdbd"
+                autoComplete="email"
+                autoCapitalize="none"
+                value={email}
+                onChangeText={setEmail}
+                onFocus={() => handleFocus('email')}
               />
-              <View style={{ ...styles.passWrapper, marginBottom: isShowKeyboard ? 323 : 43 }}>
+              <View
+                style={{
+                  ...styles.passWrapper,
+                  marginBottom: isShowKeyboard ? 159 : 43,
+                }}
+              >
                 <TextInput
-                  style={{ ...styles.input, ...styles.inputLast }}
+                  style={{
+                    ...styles.input,
+                    ...styles.inputLast,
+
+                    backgroundColor: currentFocused === 'password' ? '#ffffff' : '#f6f6f6',
+                    borderColor: currentFocused === 'password' ? '#ff6c00' : '#e8e8e8',
+                  }}
                   placeholder="Пароль"
-                  onFocus={handleFocus}
+                  placeholderTextColor="#bdbdbd"
+                  autoComplete="password"
+                  autoCapitalize="none"
+                  secureTextEntry={isSecureText}
+                  value={password}
+                  onChangeText={setPassword}
+                  onFocus={() => handleFocus('password')}
                 />
-                <TouchableOpacity style={styles.btnPassShow}>
+                <TouchableOpacity
+                  style={styles.btnPassShow}
+                  onPress={() => password !== '' && setIsSecureText(prevState => !prevState)}
+                >
                   <Text style={styles.btnPassShowText}>Показати</Text>
                 </TouchableOpacity>
               </View>
-            </KeyboardAvoidingView>
 
-            {!isShowKeyboard && (
               <View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={onSubmitUserRegister}>
                   <Text style={styles.btnText}>Увійти</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.link}>
@@ -64,9 +115,9 @@ const LoginScreen = () => {
                   </Text>
                 </TouchableOpacity>
               </View>
-            )}
-          </View>
-        </ImageBackground>
+            </View>
+          </ImageBackground>
+        </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -91,7 +142,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
   },
   keyboardView: {
-    width: '100%',
+    flex: 1,
   },
   contentWrapper: {
     paddingHorizontal: 16,
@@ -132,7 +183,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   passWrapper: {
-    marginBottom: 323,
+    marginBottom: 43,
   },
   btnPassShow: {
     position: 'absolute',
