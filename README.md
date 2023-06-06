@@ -5,7 +5,7 @@
 - Створений репозиторій `goit-react-native-hw-03`.
 - При здачі домашньої роботи є посилання: на вихідні файли та скриншот робочого додатку.
 
-## Завдання​
+## Завдання
 
 1. Додати логіку роботи з формою в компонент `RegistrationScreen`
 2. Додати логіку роботи з формою в компонент `LoginScreen`
@@ -19,6 +19,8 @@
 
 #### Результат
 
-[LoginScreen] [LoginScreenWithKeyboard]
+![image](https://github.com/savchyndd/goit-react-native-hw-03/assets/96209694/38402078-4e40-436b-ad6a-679f6368c1f9)
 
-[RegistrationScreen] [RegistrationScreenWithKeyboard]
+![image](https://github.com/savchyndd/goit-react-native-hw-03/assets/96209694/aa3a4110-1448-4578-96d8-72a7a17134de)
+
+![photo_2023-06-06_18-47-22](https://github.com/savchyndd/goit-react-native-hw-03/assets/96209694/16b78375-d416-4dbc-8874-9183c192c8dd)
