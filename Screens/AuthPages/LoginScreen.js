@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { useState } from 'react';
 import {
   View,
   ImageBackground,
@@ -74,7 +74,7 @@ const LoginScreen = () => {
             <View
               style={{
                 ...styles.passWrapper,
-                marginBottom: isShowKeyboard ? 72 : 43,
+                marginBottom: isShowKeyboard ? 92 : 43,
               }}
             >
               <TextInput
@@ -102,16 +102,14 @@ const LoginScreen = () => {
               </TouchableOpacity>
             </View>
 
-            <View>
-              <TouchableOpacity style={styles.btn} onPress={onSubmitUserRegister}>
-                <Text style={styles.btnText}>Увійти</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.link}>
-                <Text style={styles.linkText}>
-                  Немає акаунту? <Text style={styles.linkTextUnderline}>Зареєструватися</Text>
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.btn} onPress={onSubmitUserRegister}>
+              <Text style={styles.btnText}>Увійти</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.link}>
+              <Text style={styles.linkText}>
+                Немає акаунту? <Text style={styles.linkTextUnderline}>Зареєструватися</Text>
+              </Text>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </KeyboardAvoidingView>
@@ -122,6 +120,10 @@ const LoginScreen = () => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+  keyboardView: {
+    flex: 1,
+  },
+
   bgContainer: {
     width: '100%',
     height: '100%',
@@ -134,9 +136,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
-  keyboardView: {
-    flex: 1,
-  },
+
   contentWrapper: {
     paddingHorizontal: 16,
 
@@ -205,10 +205,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
     marginTop: 16,
+    marginBottom: 111,
   },
   linkText: {
     color: '#1B4371',
-    marginBottom: 111,
   },
   linkTextUnderline: {
     textDecorationLine: 'underline',

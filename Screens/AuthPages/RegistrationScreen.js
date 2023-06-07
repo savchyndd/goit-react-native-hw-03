@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Dimensions, StyleSheet } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 
 import {
@@ -13,9 +14,6 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
-
-//
-// import avatarImg from '../../assets/img/avatar.png';
 
 import backgroundImg from '../../assets/img/background.jpg';
 import SvgAddButton from '../../assets/svg/SvgAddButton';
@@ -164,11 +162,11 @@ const RegistrationScreen = () => {
 
 export default RegistrationScreen;
 
-import { Dimensions, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  // },
+  keyboardView: {
+    flex: 1,
+  },
+
   bgContainer: {
     width: '100%',
     height: '100%',
@@ -181,9 +179,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
-  keyboardView: {
-    flex: 1,
-  },
+
   contentWrapper: {
     paddingHorizontal: 16,
 
