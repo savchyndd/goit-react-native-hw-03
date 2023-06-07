@@ -68,100 +68,96 @@ const RegistrationScreen = () => {
 
   return (
     <TouchableWithoutFeedback onPress={handleKeyboardHide}>
-      <View style={styles.container}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.keyboardView}
-        >
-          <ImageBackground source={backgroundImg} style={styles.bgContainer}>
-            <View
-              style={{ ...styles.contentWrapper, height: isShowKeyboard ? '81.90%' : '67.61%' }}
-            >
-              <View style={styles.avatarWrapper}>
-                <Image style={styles.avatar} source={avatar} />
-                <TouchableOpacity
-                  style={avatar ? styles.btnAddAvatarLoad : styles.btnAddAvatar}
-                  onPress={onLoadAvatar}
-                >
-                  <SvgAddButton
-                    style={avatar ? styles.btnAddAvatarSvgLoad : styles.btnAddAvatarSvg}
-                  />
-                </TouchableOpacity>
-              </View>
-              <Text style={{ ...styles.title, marginTop: 92 }}>Реєстрація</Text>
-              <TextInput
-                style={{
-                  ...styles.input,
-                  backgroundColor: currentFocused === 'login' ? '#ffffff' : '#f6f6f6',
-                  borderColor: currentFocused === 'login' ? '#ff6c00' : '#e8e8e8',
-                }}
-                placeholder="Логін"
-                placeholderTextColor="#bdbdbd"
-                autoComplete="username"
-                autoCapitalize="none"
-                value={login}
-                onChangeText={setLogin}
-                onFocus={() => handleFocus('login')}
-              />
-              <TextInput
-                style={{
-                  ...styles.input,
-                  backgroundColor: currentFocused === 'email' ? '#ffffff' : '#f6f6f6',
-                  borderColor: currentFocused === 'email' ? '#ff6c00' : '#e8e8e8',
-                }}
-                placeholder="Адреса електронної пошти"
-                placeholderTextColor="#bdbdbd"
-                autoComplete="email"
-                autoCapitalize="none"
-                value={email}
-                onChangeText={setEmail}
-                onFocus={() => handleFocus('email')}
-              />
-              <View
-                style={{
-                  ...styles.passWrapper,
-                  marginBottom: isShowKeyboard ? 159 : 43,
-                }}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.keyboardView}
+      >
+        <ImageBackground source={backgroundImg} style={styles.bgContainer}>
+          <View style={styles.contentWrapper}>
+            <View style={styles.avatarWrapper}>
+              <Image style={styles.avatar} source={avatar} />
+              <TouchableOpacity
+                style={avatar ? styles.btnAddAvatarLoad : styles.btnAddAvatar}
+                onPress={onLoadAvatar}
               >
-                <TextInput
-                  style={{
-                    ...styles.input,
-                    ...styles.inputLast,
-
-                    backgroundColor: currentFocused === 'password' ? '#ffffff' : '#f6f6f6',
-                    borderColor: currentFocused === 'password' ? '#ff6c00' : '#e8e8e8',
-                  }}
-                  placeholder="Пароль"
-                  placeholderTextColor="#bdbdbd"
-                  autoComplete="password"
-                  autoCapitalize="none"
-                  secureTextEntry={isSecureText}
-                  value={password}
-                  onChangeText={setPassword}
-                  onFocus={() => handleFocus('password')}
+                <SvgAddButton
+                  style={avatar ? styles.btnAddAvatarSvgLoad : styles.btnAddAvatarSvg}
                 />
-                <TouchableOpacity
-                  style={styles.btnPassShow}
-                  onPress={() => password !== '' && setIsSecureText(prevState => !prevState)}
-                >
-                  <Text style={styles.btnPassShowText}>Показати</Text>
-                </TouchableOpacity>
-              </View>
-
-              <View>
-                <TouchableOpacity style={styles.btn} onPress={onSubmitUserRegister}>
-                  <Text style={styles.btnText}>Зареєструватися</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.link}>
-                  <Text style={styles.linkText}>
-                    Вже є акаунт? <Text style={styles.linkTextUnderline}>Увійти</Text>
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             </View>
-          </ImageBackground>
-        </KeyboardAvoidingView>
-      </View>
+            <Text style={{ ...styles.title, marginTop: 92 }}>Реєстрація</Text>
+            <TextInput
+              style={{
+                ...styles.input,
+                backgroundColor: currentFocused === 'login' ? '#ffffff' : '#f6f6f6',
+                borderColor: currentFocused === 'login' ? '#ff6c00' : '#e8e8e8',
+              }}
+              placeholder="Логін"
+              placeholderTextColor="#bdbdbd"
+              autoComplete="username"
+              autoCapitalize="none"
+              value={login}
+              onChangeText={setLogin}
+              onFocus={() => handleFocus('login')}
+            />
+            <TextInput
+              style={{
+                ...styles.input,
+                backgroundColor: currentFocused === 'email' ? '#ffffff' : '#f6f6f6',
+                borderColor: currentFocused === 'email' ? '#ff6c00' : '#e8e8e8',
+              }}
+              placeholder="Адреса електронної пошти"
+              placeholderTextColor="#bdbdbd"
+              autoComplete="email"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
+              onFocus={() => handleFocus('email')}
+            />
+            <View
+              style={{
+                ...styles.passWrapper,
+                marginBottom: isShowKeyboard ? 159 : 43,
+              }}
+            >
+              <TextInput
+                style={{
+                  ...styles.input,
+                  ...styles.inputLast,
+
+                  backgroundColor: currentFocused === 'password' ? '#ffffff' : '#f6f6f6',
+                  borderColor: currentFocused === 'password' ? '#ff6c00' : '#e8e8e8',
+                }}
+                placeholder="Пароль"
+                placeholderTextColor="#bdbdbd"
+                autoComplete="password"
+                autoCapitalize="none"
+                secureTextEntry={isSecureText}
+                value={password}
+                onChangeText={setPassword}
+                onFocus={() => handleFocus('password')}
+              />
+              <TouchableOpacity
+                style={styles.btnPassShow}
+                onPress={() => password !== '' && setIsSecureText(prevState => !prevState)}
+              >
+                <Text style={styles.btnPassShowText}>Показати</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View>
+              <TouchableOpacity style={styles.btn} onPress={onSubmitUserRegister}>
+                <Text style={styles.btnText}>Зареєструватися</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.link}>
+                <Text style={styles.linkText}>
+                  Вже є акаунт? <Text style={styles.linkTextUnderline}>Увійти</Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ImageBackground>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 };
@@ -170,9 +166,9 @@ export default RegistrationScreen;
 
 import { Dimensions, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  // container: {
+  //   flex: 1,
+  // },
   bgContainer: {
     width: '100%',
     height: '100%',
@@ -195,8 +191,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-
-    height: '60.22%',
   },
   title: {
     fontFamily: 'Roboto',
@@ -261,6 +255,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     color: '#1B4371',
+    marginBottom: 45,
   },
   linkTextUnderline: {
     textDecorationLine: 'underline',
